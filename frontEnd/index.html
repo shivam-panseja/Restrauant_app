@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Chill Pill</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-orange-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+      <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Login</h2>
+      <form>
+        <input
+          type="email"
+          placeholder="Email"
+          class="w-full mb-4 p-3 border rounded-xl"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full mb-4 p-3 border rounded-xl"
+          required
+        />
+
+        <button
+          class="w-full bg-orange-500 text-white py-2 rounded-xl hover:bg-orange-600"
+        >
+          Login
+        </button>
+      </form>
+      <div class="flex justify-between mt-4 text-sm">
+        <a href="forgot.html" class="text-orange-500 hover:underline"
+          >Forgot password?</a
+        >
+        <a href="register.html" class="text-orange-500 hover:underline"
+          >Register</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
