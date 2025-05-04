@@ -20,6 +20,7 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
-    "project_1": "file:"
+    "project_1": "file:",
+    "react-router-dom": "^7.5.3"
   }
 }
