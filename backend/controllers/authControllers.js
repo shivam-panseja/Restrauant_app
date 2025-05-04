@@ -50,36 +50,34 @@ const registerController = async (req, res) => {
 // Login route
 
 const loginController = async (req, res) => {
-    try {
-        const {email, password} = req.body
-        //validation
-        if (!email || !password) {
-            return res.status(404).json({
-                status: false,
-                message: 'email or password incorrect'
-            })
-        }
-        // check user
-        const findUser = await user.findOne({email: email, password: password})
-        if(!findUser) {
-            return res.status(404).json({
-                success: false,
-                message: 'User not found'
-            })
-        }
-        res.status(200).json({
-            status: true,
-            message: 'Login successfully'
-        })
-
-    }catch (error) {
-        console.log(error.message)
-        res.status(500).json({
-            status: false,
-            message: 'error while loggin '
-        })
+  try {
+    const { email, password } = req.body;
+    //validation
+    if (!email || !password) {
+      return res.status(404).json({
+        status: false,
+        message: "email or password incorrect",
+      });
     }
-
-}
+    // check user
+    const findUser = await user.findOne({ email: email, password: password });
+    if (!findUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      status: true,
+      message: "Login successfully",
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      status: false,
+      message: "error while loggin ",
+    });
+  }
+};
 
 module.exports = { registerController, loginController };
