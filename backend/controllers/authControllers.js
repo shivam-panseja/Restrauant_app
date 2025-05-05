@@ -1,5 +1,9 @@
 const user = require("../models/userModels");
-// const user = require("../models/userModels");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 // registern controller
 const registerController = async (req, res) => {
@@ -25,10 +29,11 @@ const registerController = async (req, res) => {
         message: "User with this email is already exists",
       });
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
     const User = await user.create({
       userName,
       email,
-      password,
+      password: hashedPassword,
       address,
       Phone,
       userType,
@@ -54,22 +59,42 @@ const loginController = async (req, res) => {
     const { email, password } = req.body;
     //validation
     if (!email || !password) {
-      return res.status(404).json({
+      res.status(404).json({
         status: false,
         message: "email or password incorrect",
       });
+      return;
     }
     // check user
-    const findUser = await user.findOne({ email: email, password: password });
+    const findUser = await user.findOne({ email: email });
     if (!findUser) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
-        message: "User not found",
+        message: "Email or password mismatched",
       });
+      return;
     }
+
+    // check password
+    const isMatch = await bcrypt.compare(password, findUser.password);
+    if (!isMatch) {
+      res.status(500).json({
+        status: false,
+        message: "Incorrect Password",
+      });
+      return;
+    }
+    // Token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+    console.log("🚀 ~ loginController ~ token:", token);
+    findUser.password = undefined;
     res.status(200).json({
       status: true,
       message: "Login successfully",
+      token,
+      findUser,
     });
   } catch (error) {
     console.log(error.message);
@@ -77,6 +102,7 @@ const loginController = async (req, res) => {
       status: false,
       message: "error while loggin ",
     });
+    return;
   }
 };
 
