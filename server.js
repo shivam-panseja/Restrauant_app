@@ -12,12 +12,11 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 //routes
-app.use("/api/v1", require("./routes/testRoutes"));
+// app.use("/api/v1", require("./routes/testRoutes"));
 app.use("/api/v1", require("./routes/authRoutes"));
+app.use("/api/v1", require("./routes/userRoute"));
 app.get("/", (req, res) => {
-  res
-    .status(200)
-    .json({ Status: " heath", message: "Server is running successfully" });
+  res.status(200).json({ Status: "Server is running successfully" });
 });
 
 const port = process.env.PORT;
