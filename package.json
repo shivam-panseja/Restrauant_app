@@ -1,7 +1,6 @@
 {
   "name": "project_1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -16,14 +15,24 @@
     "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
     "eslint": "^9.25.1",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.10",
     "project_1": "file:",
     "react-router-dom": "^7.5.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivam-panseja/Restrauant_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shivam-panseja/Restrauant_app/issues"
+  },
+  "homepage": "https://github.com/shivam-panseja/Restrauant_app#readme",
+  "description": ""
 }
